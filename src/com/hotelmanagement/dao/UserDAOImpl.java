@@ -13,7 +13,7 @@ public class UserDAOImpl implements IUserDAO {
 
     @Override
     public boolean createUser(IUser user) {
-        String sql = "INSERT INTO users (username, password, role) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO users (username, password, role) VALUES (?, SHA2(?, 256), ?)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, user.getUsername());
@@ -29,7 +29,7 @@ public class UserDAOImpl implements IUserDAO {
 
     @Override
     public IUser login(String username, String password) {
-        String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+        String sql = "SELECT * FROM users WHERE username = ? AND password = SHA2(?, 256)";
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, username);
