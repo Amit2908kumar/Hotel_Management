@@ -10,7 +10,7 @@ import com.hotelmanagement.model.IUser;
 import java.util.List;
 import java.util.Scanner;
 
-public class Menu {
+public class Menu{
     private static IUserController userController = new UserControllerImpl();
     private static ICustomerController customerController = new CustomerControllerImpl();
 

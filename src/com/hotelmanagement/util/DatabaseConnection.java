@@ -7,8 +7,8 @@ import java.sql.SQLException;
 public class DatabaseConnection {
     // Update the URL, username, and password according to your MySQL configuration
     private static final String URL = "jdbc:mysql://localhost:3306/hotel_management";
-    private static final String USER = "your_mysql_username";
-    private static final String PASSWORD = "your_mysql_password";
+    private static final String USER = "root";
+    private static final String PASSWORD = "";
     
     // Load MySQL JDBC Driver
     static {
