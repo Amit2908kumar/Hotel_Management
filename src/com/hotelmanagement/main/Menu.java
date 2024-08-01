@@ -16,32 +16,43 @@ public class Menu {
     private static ICustomerController customerController = new CustomerControllerImpl();
 
     public static void main(String[] args) {
+        try{
+            Scanner scanner = new Scanner(System.in);
+            while (true) {
+                System.out.println("Hotel Management System");
+                System.out.println("1. Register");
+                System.out.println("2. Login");
+                System.out.println("3. Exit");
+                System.out.print("Enter your choice: ");
+                int choice = scanner.nextInt();
+                scanner.nextLine(); // consume newline
 
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
-            System.out.println("Hotel Management System");
-            System.out.println("1. Register");
-            System.out.println("2. Login");
-            System.out.println("3. Exit");
-            System.out.print("Enter your choice: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // consume newline
-
-            switch (choice) {
-                case 1:
-                    register(scanner);
-                    break;
-                case 2:
-                    login(scanner);
-                    break;
-                case 3:
-                    System.out.println("Exiting...");
-                    scanner.close();
-                    return;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
+                switch (choice) {
+                    case 1:
+                        register(scanner);
+                        break;
+                    case 2:
+                        login(scanner);
+                        break;
+                    case 3:
+                        System.out.println("Exiting...");
+                        scanner.close();
+                        return;
+                    default:
+                        System.out.println("Invalid choice. Please try again.");
+                }
             }
+        }catch (Exception e){
+            if(e.getMessage() == null){
+                System.out.println("Unknown problem");
+            }
+            else{
+                System.out.println(e.getMessage());
+            }
+
         }
+
+
     }
 
     private static void register(Scanner scanner) {
