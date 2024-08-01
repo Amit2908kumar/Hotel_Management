@@ -1,5 +1,6 @@
 package com.hotelmanagement.dao;
 
+import com.hotelmanagement.FileManager.FileLogger;
 import com.hotelmanagement.model.IUser;
 import com.hotelmanagement.model.User;
 import com.hotelmanagement.util.DatabaseConnection;
@@ -23,6 +24,7 @@ public class UserDAOImpl implements IUserDAO {
             return true;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            FileLogger.writeSevereLog(e.getMessage());
             return false;
         }
     }
@@ -45,6 +47,7 @@ public class UserDAOImpl implements IUserDAO {
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            FileLogger.writeSevereLog(e.getMessage());
         }
         return null;
     }

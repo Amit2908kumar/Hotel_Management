@@ -1,7 +1,8 @@
 package com.hotelmanagement.dao;
 
-import com.hotelmanagement.model.ICustomer;
+import com.hotelmanagement.FileManager.FileLogger;
 import com.hotelmanagement.model.Customer;
+import com.hotelmanagement.model.ICustomer;
 import com.hotelmanagement.util.DatabaseConnection;
 
 import java.sql.Connection;
@@ -23,6 +24,7 @@ public class CustomerDAOImpl implements ICustomerDAO {
             pstmt.executeUpdate();
             return true;
         } catch (SQLException e) {
+            FileLogger.writeSevereLog(e.getMessage());
             System.out.println(e.getMessage());
             return false;
         }
@@ -43,6 +45,7 @@ public class CustomerDAOImpl implements ICustomerDAO {
                 return customer;
             }
         } catch (SQLException e) {
+            FileLogger.writeSevereLog(e.getMessage());
             System.out.println(e.getMessage());
         }
         return null;
@@ -63,6 +66,7 @@ public class CustomerDAOImpl implements ICustomerDAO {
                 customers.add(customer);
             }
         } catch (SQLException e) {
+            FileLogger.writeSevereLog(e.getMessage());
             System.out.println(e.getMessage());
         }
         return customers;
@@ -79,6 +83,7 @@ public class CustomerDAOImpl implements ICustomerDAO {
             pstmt.executeUpdate();
             return true;
         } catch (SQLException e) {
+            FileLogger.writeSevereLog(e.getMessage());
             System.out.println(e.getMessage());
             return false;
         }
@@ -93,6 +98,7 @@ public class CustomerDAOImpl implements ICustomerDAO {
             pstmt.executeUpdate();
             return true;
         } catch (SQLException e) {
+            FileLogger.writeSevereLog(e.getMessage());
             System.out.println(e.getMessage());
             return false;
         }

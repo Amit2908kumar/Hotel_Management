@@ -1,5 +1,6 @@
 package com.hotelmanagement.main;
 
+import com.hotelmanagement.FileManager.FileLogger;
 import com.hotelmanagement.controller.*;
 import com.hotelmanagement.model.ICustomer;
 import com.hotelmanagement.model.IRoom;
@@ -15,6 +16,7 @@ public class Menu {
     private static ICustomerController customerController = new CustomerControllerImpl();
 
     public static void main(String[] args) {
+
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("Hotel Management System");
@@ -53,8 +55,10 @@ public class Menu {
         boolean isRegistered = userController.register(username, password, role);
         if (isRegistered) {
             System.out.println("User registered successfully.");
+            FileLogger.writeInfoLog(username + " registered successfully");
         } else {
             System.out.println("User registration failed.");
+            FileLogger.writeInfoLog(username + " registration failed");
         }
     }
 
@@ -67,13 +71,14 @@ public class Menu {
         IUser user = userController.login(username, password);
         if (user != null) {
             System.out.println("Login successful. Welcome, " + user.getUsername());
+            FileLogger.writeInfoLog(username + " Login successful");
             if ("admin".equals(user.getRole())) {
                 showAdminMenu(scanner);
             } else {
                 showUserMenu(scanner);
             }
         } else {
-            System.out.println("Login failed. Invalid credentials.");
+            FileLogger.writeWarningLog(username + " Login failed. Invalid credentials.");
         }
     }
 
@@ -100,6 +105,7 @@ public class Menu {
                     break;
                 case 4:
                     System.out.println("Logging out...");
+                    FileLogger.writeInfoLog("Logging out...");
                     return;
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -122,6 +128,7 @@ public class Menu {
                     break;
                 case 2:
                     System.out.println("Logging out...");
+                    FileLogger.writeInfoLog("Logging out...");
                     return;
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -175,8 +182,10 @@ public class Menu {
         boolean isAdded = customerController.addCustomer(name, email);
         if (isAdded) {
             System.out.println("Customer added successfully.");
+            FileLogger.writeInfoLog("Customer added successfully.");
         } else {
             System.out.println("Customer addition failed.");
+            FileLogger.writeSevereLog("Customer addition failed.");
         }
     }
 
@@ -221,8 +230,10 @@ public class Menu {
         boolean isUpdated = customerController.updateCustomer(id, name, email);
         if (isUpdated) {
             System.out.println("Customer updated successfully.");
+            FileLogger.writeInfoLog("Customer updated successfully.");
         } else {
             System.out.println("Customer update failed.");
+            FileLogger.writeSevereLog("Customer update failed.");
         }
     }
 
@@ -234,7 +245,9 @@ public class Menu {
         boolean isDeleted = customerController.deleteCustomer(id);
         if (isDeleted) {
             System.out.println("Customer deleted successfully.");
+            FileLogger.writeInfoLog("Customer deleted successfully.");
         } else {
+            FileLogger.writeSevereLog("Customer deletion failed.");
             System.out.println("Customer deletion failed.");
         }
     }
@@ -290,8 +303,10 @@ public class Menu {
         boolean isAdded = roomController.addRoom(number, type, price);
         if (isAdded) {
             System.out.println("Room added successfully.");
+            FileLogger.writeInfoLog("Room added successfully.");
         } else {
             System.out.println("Room addition failed.");
+            FileLogger.writeSevereLog("Room addition failed.");
         }
     }
 
@@ -341,8 +356,10 @@ public class Menu {
         boolean isUpdated = roomController.updateRoom(id, number, type, price);
         if (isUpdated) {
             System.out.println("Room updated successfully.");
+            FileLogger.writeInfoLog("Room updated successfully.");
         } else {
             System.out.println("Room update failed.");
+            FileLogger.writeSevereLog("Room update failed.");
         }
     }
 
@@ -354,8 +371,10 @@ public class Menu {
         boolean isDeleted = roomController.deleteRoom(id);
         if (isDeleted) {
             System.out.println("Room deleted successfully.");
+            FileLogger.writeInfoLog("Room deleted successfully.");
         } else {
             System.out.println("Room deletion failed.");
+            FileLogger.writeSevereLog("Room deletion failed.");
         }
     }
     private static IStaffController staffController = new StaffControllerImpl();
@@ -409,8 +428,10 @@ public class Menu {
         boolean isAdded = staffController.addStaff(name, position, salary);
         if (isAdded) {
             System.out.println("Staff added successfully.");
+            FileLogger.writeInfoLog("Staff added successfully.");
         } else {
             System.out.println("Staff addition failed.");
+            FileLogger.writeSevereLog("Staff addition failed.");
         }
     }
 
@@ -460,8 +481,10 @@ public class Menu {
         boolean isUpdated = staffController.updateStaff(id, name, position, salary);
         if (isUpdated) {
             System.out.println("Staff updated successfully.");
+            FileLogger.writeInfoLog("Staff updated successfully.");
         } else {
             System.out.println("Staff update failed.");
+            FileLogger.writeSevereLog("Staff update failed");
         }
     }
 
@@ -473,8 +496,10 @@ public class Menu {
         boolean isDeleted = staffController.deleteStaff(id);
         if (isDeleted) {
             System.out.println("Staff deleted successfully.");
+            FileLogger.writeInfoLog("Staff deleted successfulyl");
         } else {
             System.out.println("Staff deletion failed.");
+            FileLogger.writeSevereLog("Staff deletion failed");
         }
     }
 
